@@ -48,6 +48,41 @@
     const poster = ref('')
     const actoresSeleccionados = ref([])
     const generosSeleccionados = ref([])
+
+    watch(() => props.pelicula, (nuevaPelicula) => {
+        if(nuevaPelicula) {
+            nombre.value = nuevaPelicula.nombre
+            poster.value = nuevaPelicula.poster
+            year.value = nuevaPelicula.year
+            actoresSeleccionados.value = nuevaPelicula.actores || []
+            generosSeleccionados.value = nuevaPelicula.generos || []
+        } else {
+            nombre.value = ''
+            poster.value = ''
+            year.value = null
+            actoresSeleccionados.value = []
+            generosSeleccionados.value = []
+        }
+    })
+
+    const resetForm = () => {
+        nombre.value = ''
+        poster.value = ''
+        year.value = null
+        actoresSeleccionados.value = []
+        generosSeleccionados.value = []
+}
+
+    const submitForm = () => {
+        emit('guardar', {
+            nombre: nombre.value,
+            poster: poster.value,
+            year: year.value,
+            actores: actoresSeleccionados.value,
+            generos: generosSeleccionados.value
+        })
+        resetForm()
+    }
 </script>
 
 <style scoped>

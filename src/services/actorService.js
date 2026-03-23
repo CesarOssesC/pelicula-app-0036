@@ -11,12 +11,16 @@ import {
 const actoresCollection = collection(db, 'actores')
 
 export const getActores = async () => {
-    const snapshot = await getDocs(actoresCollection)
-
-    return snapshot.docs.map( doc => ({
-        id: doc.id,
-        ...doc.data()
-    }))
+    try {
+        const snapshot = await getDocs(actoresCollection)
+    
+        return snapshot.docs.map( doc => ({
+            id: doc.id,
+            ...doc.data()
+        }))
+    } catch (error) {
+        console.error('Error al intentar obtener los actores', error)
+    }
 }
 
 export const createActor = async (actor) => {

@@ -14,7 +14,7 @@
             </p>
         </div>
         <div class="d-flex justify-content-center gap-2 card-footer">
-            <router-link to="#" class="btn btn-sm btn-info">Detalles</router-link>
+            <router-link :to="`/peliculas/${pelicula.id}`" class="btn btn-sm btn-info">Detalles</router-link>
             <button @click="emit('edit', pelicula)" class="btn btn-sm btn-primary">Editar</button>
             <button @click="emit('delete', pelicula.id)" class="btn btn-sm btn-danger">Elimnar</button>
         </div>
