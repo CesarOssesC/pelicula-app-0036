@@ -12,7 +12,8 @@ const actoresCollection = collection(db, 'actores')
 
 export const getActores = async () => {
     try {
-        const snapshot = await getDocs(actoresCollection)
+        const snapshot = await getDocs(actoresCollection) // GET /actores que tenemos en firebase
+
     
         return snapshot.docs.map( doc => ({
             id: doc.id,

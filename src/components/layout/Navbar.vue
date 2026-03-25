@@ -11,6 +11,9 @@
                     <router-link class="nav-link" to="/actores">Actores</router-link>
                     <router-link class="nav-link" to="/generos">Géneros</router-link>
                 </div>
+                <div class="navbar-nav ms-auto">
+                    <router-link class="nav-link" to="/register">Registrarse</router-link>
+                </div>
             </div>
         </div>
     </nav>

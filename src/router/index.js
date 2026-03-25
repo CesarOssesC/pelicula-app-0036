@@ -3,6 +3,7 @@ import ActoresView from '@/views/ActoresView.vue'
 import GenerosView from '@/views/GenerosView.vue'
 import PeliculasView from '@/views/PeliculasView.vue'
 import DetallePelicula from '@/views/DetallePelicula.vue'
+import RegisterView from '@/views/RegisterView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,10 @@ const router = createRouter({
     {
       path: '/generos',
       component: GenerosView
+    },
+    {
+      path: '/register',
+      component: RegisterView
     }
   ],
 })
