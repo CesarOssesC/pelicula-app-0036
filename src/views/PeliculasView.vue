@@ -1,5 +1,5 @@
 <template>
-    <h1 class="text-center my-5 fw-bold display-5">Películas!</h1>
+    <h1 class="text-center my-5 fw-bold display-5">🎬 Películas 🎬</h1>
     <!-- aqui eventualmente ira el formulario -->
     <PeliculaForm 
         v-if="isAdmin"
