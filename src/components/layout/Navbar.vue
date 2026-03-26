@@ -12,7 +12,14 @@
                     <router-link class="nav-link" to="/generos">Géneros</router-link>
                 </div>
                 <div class="navbar-nav ms-auto">
-                    <router-link class="nav-link" to="/register">Registrarse</router-link>
+                    <template v-if="!user">
+                        <router-link class="nav-link" to="/register">Registrarse</router-link>
+                        <router-link class="nav-link" to="/login">Login</router-link>
+                    </template>
+                    <template v-else>
+                        <span class="nav-link me-3">Bienvenido: {{ nombre }}</span>
+                        <button @click="cerrarSesion" class="btn btn-outline-light">Cerrar Sesión</button>
+                    </template>
                 </div>
             </div>
         </div>
@@ -20,6 +27,25 @@
 </template>
 
 <script setup>
+    import { computed } from 'vue'
+    import { useStore } from 'vuex'
+    import { useRouter } from 'vue-router'
+    import { logout } from '@/services/authService';
+
+    const store = useStore()
+    const router = useRouter()
+
+    const user = computed(() => store.state.user)
+
+    const nombre = computed(() => {
+        return store.state.userProfile?.nombre || ''
+    })
+
+    const cerrarSesion = async () => {
+        await logout()
+        store.commit('logout')
+        router.push('/peliculas')
+    }
 </script>
 
 <style scoped>

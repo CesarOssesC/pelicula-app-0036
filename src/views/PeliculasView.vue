@@ -2,6 +2,7 @@
     <h1 class="text-center my-5 fw-bold display-5">Películas!</h1>
     <!-- aqui eventualmente ira el formulario -->
     <PeliculaForm 
+        v-if="isAdmin"
         :pelicula="peliculaSeleccionada"
         :actores="actores"
         :generos="generos"
@@ -20,7 +21,8 @@
 </template>
 
 <script setup>
-    import { ref, onMounted, watch } from 'vue'
+    import { ref, onMounted, computed } from 'vue'
+    import { useStore } from 'vuex'
     import PeliculaCard from '@/components/PeliculaCard.vue';
     import {
         getPeliculas,
@@ -32,12 +34,16 @@
     import { getGeneros } from '@/services/generoService';
     import PeliculaForm from '@/components/PeliculaForm.vue';
 
+    const store = useStore()
+
     const peliculas = ref([])
     const actores = ref([])
     const generos = ref([])
 
     const peliculaSeleccionada = ref(null)
     const isEditing = ref(false)
+
+    const isAdmin = computed(() => store.state.rol === 'admin')
 
     const cargarDatos = async () => {
         try {

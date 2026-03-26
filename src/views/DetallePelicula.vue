@@ -1,7 +1,7 @@
 <template>
     <div class="mb-5 pb-5" v-if="pelicula">
         <h2 class="text-center my-5 py-5 display-5 fw-bold">🍿{{ pelicula.nombre }} 🍿</h2>
-        <div class="row justify-content-around align-items-start">
+        <div class="row justify-content-around align-items-start mb-5">
             <div class="col-5">
                 <img :src="pelicula.poster" :alt="pelicula.nombre" class="w-100">
             </div>
@@ -17,7 +17,9 @@
                 </ul>
             </div>
         </div>
-
+        <div class="text-center">
+            <button @click="volver" class="btn btn-dark">volver</button>
+        </div>
     </div>
 </template>
 
@@ -31,7 +33,7 @@
     const route = useRoute()
     const router = useRouter()
     const volver = () => {
-        router.back
+        router.back()
     }
 
     const pelicula = ref(null)
