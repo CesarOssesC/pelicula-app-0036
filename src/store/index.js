@@ -4,7 +4,8 @@ export default createStore({
     state: {
         user: null,
         rol: null,
-        userProfile: null
+        userProfile: null,
+        errorMessage: null
     },
     mutations: {
         setUser(state, user) {
@@ -23,6 +24,9 @@ export default createStore({
             state.user = null,
             state.rol = null,
             state.userProfile = null
+        },
+        setErrorMessage(state, message) {
+            state.errorMessage = message
         }
     }
 })

@@ -49,11 +49,12 @@ router.beforeEach((to) => {
   const rol = store.state.rol
 
   if (to.meta.requiresAuth && !user) {
-    alert('Debes estar logeado para acceder a esta página')
+    store.commit('setErrorMessage', 'Debes estar logeado para acceder a esta página')
     return '/login'
   }
 
   if (to.meta.requiresAdmin && rol !== 'admin') {
+    store.commit('setErrorMessage', 'No tienes autorización para ver esta página')
     return '/peliculas'
   }
 })
